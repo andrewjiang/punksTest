@@ -1,0 +1,30 @@
+<% layout('layouts/boilerplate') %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Rank</th>
+      <th scope="col">Punk Image</th>
+      <th scope="col">ID</th>
+      <th scope="col">Total Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for (let p of punks){ %>
+      <tr>
+        <th scope="row"><%= p.ranking %></th>
+        <td>
+          <a href="/punks/id/<%= p.id %>">
+            <%- p.punk_image %><%= p.id %></td>
+          </a>
+        <td><%= p.attributes %></td>
+        <td><%= p.total_score %></td>
+      </tr>
+    <% } %>
+  </tbody>
+</table>
+
+<ul>
+
+</ul>
+<a href="/comments/new">New Comment</a>

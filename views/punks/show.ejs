@@ -1,0 +1,24 @@
+<% layout('layouts/boilerplate') %>
+
+<h2>More info on Punk #<%= punk.id %></h2>
+<br>
+
+<h3>Buyer: <%= resData.purchases[0].buyer.id %></h3>
+
+<%- punk.punk_image %>
+<p>Rarity Rank: <%= punk.ranking %></p>
+<p><%= punk.skin %></p>
+<p><%= punk.type %></p>
+<p><%= punk.total_score %></p>
+<p>Attributes:</p>
+<ul>
+  <% for(attribute of punk.attributes){ %>
+    <li><%= attribute %></li>
+  <% } %>
+</ul>
+
+<a href="/punks">All Punks</a>
+<a href="/punks/id/<%= punk.id %>/edit">Edit Punk</a>
+<form action="/punks/id/<%= punk.id %>?_method=DELETE" method="POST">
+  <button>Delete</button>
+</form>

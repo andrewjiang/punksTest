@@ -1,0 +1,23 @@
+<% layout('layouts/boilerplate') %>
+
+
+<form class="" action="/punks/id/<%= punk.id %>?_method=PATCH" method="POST">
+  <label for="id">Punk ID</label>
+  <input type="text" name="id" value="<%= punk.id %>">
+  <br>
+  <label for="id">Punk Skin</label>
+  <input type="text" name="skin" value="<%= punk.skin %>">
+  <br>
+  <label for="id">Punk Type</label>
+  <input type="text" name="type" value="<%= punk.type %>">
+  <br>
+  <label for="punk_image">Image URL</label>
+  <input type="text" name="punk_image" value='<%= punk.punk_image %>'>
+  <br>
+  <label for="on_sale">On Sale</label>
+  <input type="checkbox" name="on_sale" <%=punk.on_sale === true ? 'checked':''%>>
+  <br>
+  <button>Submit</button>
+</form>
+
+<a href="/punks">All Punks</a>
