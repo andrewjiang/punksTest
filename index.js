@@ -17,7 +17,7 @@ const dbUrl = process.env.DB_URL;
 
 // mongodb://localhost:27017/punksApp
 
-mongoose.connect(dbUrl, {
+mongoose.connect("mongodb+srv://our-first-user:1Y2qcVsTdVxvhpr7@cluster0.onbpm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
