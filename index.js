@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV !== "production"){
+  require('dotenv').config();
+}
+
 const express = require('express')
 const app = express();
 const path = require('path')
@@ -9,7 +13,16 @@ const axios = require('axios')
 const ejsMate = require('ejs-mate')
 const mongoose = require('mongoose')
 const Punk = require('./models/punk')
-mongoose.connect('mongodb://localhost:27017/punksApp', {useNewUrlParser: true, useUnifiedTopology: true})
+const dbUrl = process.env.DB_URL;
+
+// mongodb://localhost:27017/punksApp
+
+mongoose.connect(dbUrl, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: false
+})
 .then(() => {
   console.log("CONNECTION OPEN!! HERE WE ARE!")
 })
