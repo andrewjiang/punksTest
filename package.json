@@ -11,8 +11,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "engines":{
-    "node": "12.19.0"
+  "engines": {
+    "node": "12.19.0",
+    "npm": "6.14.8"
   },
   "dependencies": {
     "axios": "^0.21.1",
@@ -25,6 +26,7 @@
     "mongoose": "^5.12.3",
     "netlify": "^6.1.18",
     "path": "^0.12.7",
+    "save": "^2.4.0",
     "uuid": "^8.3.2"
   }
 }

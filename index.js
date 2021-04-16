@@ -171,7 +171,7 @@ app.delete('/punks/id/:id', async (req, res) =>{
   res.redirect('/punks')
 })
 
-const port = process.env.PORT;
+const port = process.env.PORT || 3000
 
 app.listen(port, () => {
     console.log(`I am here with ${process.env}`)
