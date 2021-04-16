@@ -1,7 +1,3 @@
-if (process.env.NODE_ENV !== "production") {
-    require('dotenv').config();
-}
-
 const express = require('express')
 const app = express();
 const path = require('path')
@@ -13,7 +9,7 @@ const axios = require('axios')
 const ejsMate = require('ejs-mate')
 const mongoose = require('mongoose')
 const Punk = require('./models/punk')
-const dbUrl = process.env.DB_URL || "mongodb+srv://our-first-user:1Y2qcVsTdVxvhpr7@cluster0.onbpm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const dbUrl = "mongodb+srv://our-first-user:1Y2qcVsTdVxvhpr7@cluster0.onbpm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 // mongodb://localhost:27017/punksApp
 
@@ -171,9 +167,11 @@ app.delete('/punks/id/:id', async (req, res) =>{
   res.redirect('/punks')
 })
 
-const port = process.env.PORT || 3000
+const PORT = process.env.PORT
 
-app.listen(port, () => {
-    console.log(`I am here with ${process.env}`)
-    console.log(`Serving on port ${port}`)
-})
+console.log(`Listening on ${PORT}`)
+
+app.listen(PORT, () =>{
+  console.log(`I am here with ${process.env}`)
+  console.log(`Serving on port ${port}`)
+});
