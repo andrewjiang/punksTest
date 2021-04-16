@@ -1,0 +1,45 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="col-6 offset-3">
+  <div class="card text-center">
+    <div class="card-header">
+      <h2>Punk #<%= punk.id %></h2>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-6">
+          <%- punk.punk_image %>
+        </div>
+        <div class="col-6 text-start">
+          <p><b>Owned by:</b> <a href="https://www.larvalabs.com/cryptopunks/accountInfo?account=<%= resData.data.punks[0].owner.id %>"><p class="fs-6"><%= resData.data.punks[0].owner.id %></p></a></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <h3>Key Stats</h3>
+        <div class="col-10 offset-1 text-start">
+          <p>Rarity Rank: <%= punk.ranking %></p>
+        </div>
+        <div class="col-10 offset-1 text-start">
+          <p>Attributes:</p>
+          <ul>
+            <% for(attribute of punk.attributes){ %>
+              <li><%= attribute %></li>
+            <% } %>
+          </ul>
+        </div>
+
+
+
+      </div>
+
+
+      <!-- <h5 class="card-title">Special title treatment</h5>
+      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a> -->
+    </div>
+    <div class="card-footer text-muted">
+      <a href="/">Go Back</a>
+    </div>
+  </div>
+</div>

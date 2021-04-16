@@ -1,10 +1,24 @@
 <% layout('layouts/boilerplate') %>
 
-<div class="container mt-5">
-  <form class="" action="index.html" method="post">
-    <label for="punkId"></label>
-    <input type="text" name="punkId" value="">
-    <button>Submit</button>
-  </form>
+<div class="col-6 offset-3">
+  <div class="card text-center">
+    <div class="card-header">
+      Choose Your Punk
+    </div>
+    <div class="card-body">
+      <form class="" action="/findpunk" method="post">
+        <div class="mb-3">
+          <label for="id" class="form-label">Punk ID:</label>
+          <input type="text" class="form-control" name="id" value="" required>
+        </div>
+        <button class="btn btn-success">Get Info</button>
+      </form>
+      <!-- <h5 class="card-title">Special title treatment</h5>
+      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a> -->
+    </div>
+    <div class="card-footer text-muted">
 
+    </div>
+  </div>
 </div>

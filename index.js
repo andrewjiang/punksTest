@@ -1,6 +1,4 @@
-if (process.env.NODE_ENV !== "production"){
-  require('dotenv').config();
-}
+require('dotenv').config();
 
 const express = require('express')
 const app = express();
@@ -13,11 +11,11 @@ const axios = require('axios')
 const ejsMate = require('ejs-mate')
 const mongoose = require('mongoose')
 const Punk = require('./models/punk')
-const dbUrl = process.env.DB_URL;
+const dbUrl = process.env.DB_URL || "mongodb+srv://our-first-user:1Y2qcVsTdVxvhpr7@cluster0.onbpm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 // mongodb://localhost:27017/punksApp
 
-mongoose.connect("mongodb+srv://our-first-user:1Y2qcVsTdVxvhpr7@cluster0.onbpm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {
+mongoose.connect(dbUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
@@ -36,7 +34,7 @@ app.use(express.json())
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(methodOverride('_method'))
 app.engine('ejs', ejsMate);
-app.set('views', path.join(__dirname, 'views'))
+app.set('views', 'views')
 app.set('view engine', 'ejs')
 
 app.get('/', (req, res) => {
@@ -102,22 +100,41 @@ app.get('/punks/id/:id', async (req, res) => {
   res.render('punks/show', {punk, resData});
 })
 
-const purchases = async function(id){
-  let resData = {}
-  await axios.post('https://api.thegraph.com/subgraphs/name/itsjerryokolo/cryptopunks', {
+app.post('/findpunk', async(req, res) => {
+  const {id} = req.body
+  const punk = await Punk.findOne({id: id})
+
+  axios.post('https://api.thegraph.com/subgraphs/name/andrewjiang/cryptopunks-data', {
     query: `
     {
-      purchases(where: {punk: "${id}"}) {
-        id
-        punk {
+      punks(where: {id: ${id}}) {
+        owner {
           id
         }
-        seller
-        buyer {
-          id
-        }
-        amount
-        transaction {
+      }
+    }
+    `
+  })
+  .then((response) => {
+    resData = response.data
+    console.log(resData.data.punks[0].owner.id)
+    console.log("HERE")
+    res.render('punks/display', {punk, resData});
+  })
+  .catch((error) => {
+    console.error(error)
+  })
+
+
+})
+
+const purchases = async function(id){
+  let resData = {}
+  await axios.post('https://thegraph.com/explorer/subgraph/andrewjiang/cryptopunks-data', {
+    query: `
+    {
+      punks(where: {id: 9536}) {
+        owner {
           id
         }
       }

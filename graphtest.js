@@ -1,20 +1,11 @@
 const axios = require('axios')
 let resData = {}
 
-axios.post('https://api.thegraph.com/subgraphs/name/itsjerryokolo/cryptopunks', {
+axios.post('https://api.thegraph.com/subgraphs/name/andrewjiang/cryptopunks-data', {
   query: `
   {
-    purchases(where: {punk: "9539"}) {
-      id
-      punk {
-        id
-      }
-      seller
-      buyer {
-        id
-      }
-      amount
-      transaction {
+    punks(where: {id: 9536}) {
+      owner {
         id
       }
     }
@@ -23,7 +14,7 @@ axios.post('https://api.thegraph.com/subgraphs/name/itsjerryokolo/cryptopunks', 
 })
 .then((res) => {
   resData = res.data
-  console.log(resData)
+  console.log(resData.data.punks[0].owner.id)
   console.log("HERE")
 })
 .catch((error) => {
